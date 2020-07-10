@@ -1,0 +1,62 @@
+<p id ="Answer"></p>
+
+<script type="text/javascript">
+
+    var patientdata = {
+        "resourceType": "Patient",
+        "id": "xcda",
+        "text": 
+          {"status": "generated",
+          "div": "\n      \n      <p>Henry Levin the 7th</>\n    \n    </div>"
+        },
+        "identifier" :
+          {
+            "use": "usual",
+            "type": {
+              "coding": [
+                {
+                  "system": "htt://hl7.org/fhir/v2/0203",
+                  "code": "MR"
+                }
+              ]
+            ,
+            "system": "urn:oid:2.16.840.1.113883.19.5",
+            "value": "12345"},
+            "active": true,
+            "name": [
+                {
+                "family": [
+                    "Levin"
+                ],
+                "given": [
+                    "Henry"
+                ]
+                }
+            ],
+          "gender": "male",
+          "birthDate": "2002-09-24",
+          "managingOrganization": {
+          "reference": "Organization/2.16.840.1.113883.19.5",
+          "display": "University Health Network"
+          },
+          "conditions": [
+            "Diabetes",
+            "High blood pressure",
+            "Asthma"]
+        }
+    };
+      
+    var output = document.getElementById('Answer')
+    output.innerHTML = 'Name of patient: ' + patientdata.identifier.name[0].given[0] + ' ' + patientdata.identifier.name[0].family[0] + "<br>" ;
+    output.innerHTML += 'Organization name: ' + patientdata.identifier.managingOrganization.display + "<br>" ;
+    output.innerHTML += 'Gender: ' + patientdata.identifier.gender + "<br>";
+    output.innerHTML += 'Number of conditions they have: ' + patientdata.identifier.conditions.length+ "<br>";
+    output.innerHTML += 'List of all conditions: ' + "<br>";
+    for (p in patientdata.identifier.conditions){
+      output.innerHTML += '-' + patientdata.identifier.conditions[p] + "<br>"
+    }
+     
+    
+    
+    
+</script>
